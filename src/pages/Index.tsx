@@ -219,7 +219,7 @@ const Index = () => {
                 className="gap-2"
               >
                 <Trash2 className="h-4 w-4" />
-                Eliminar encuestas
+                Eliminar resultado
               </Button>
             </AlertDialogTrigger>
             <AlertDialogContent>
