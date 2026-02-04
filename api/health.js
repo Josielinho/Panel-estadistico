@@ -8,26 +8,39 @@ export default async function handler(req, res) {
     if (!SUPABASE_URL || !SUPABASE_SERVICE_ROLE_KEY) {
       return res.status(500).json({
         ok: false,
-        error: "Faltan SUPABASE_URL o SUPABASE_SERVICE_ROLE_KEY",
+        error: "Faltan variables de entorno en Vercel",
       });
     }
 
-    const supabase = createClient(SUPABASE_URL, SUPABASE_SERVICE_ROLE_KEY);
+    const supabase = createClient(
+      SUPABASE_URL,
+      SUPABASE_SERVICE_ROLE_KEY
+    );
 
-    // ✅ usa una tabla que exista (si no existe "productos", cambia el nombre)
+    // ✅ TABLA REAL CONFIRMADA
     const { data, error } = await supabase
-      .from("productos")
+      .from("encuesta_resultados")
       .select("id")
       .limit(1);
 
-    if (error) return res.status(500).json({ ok: false, error: error.message });
+    if (error) {
+      return res.status(500).json({
+        ok: false,
+        error: error.message,
+      });
+    }
 
     return res.status(200).json({
       ok: true,
-      ts: new Date().toISOString(),
+      message: "Supabase activo",
+      timestamp: new Date().toISOString(),
       rows_sample: data?.length ?? 0,
     });
+
   } catch (e) {
-    return res.status(500).json({ ok: false, error: String(e) });
+    return res.status(500).json({
+      ok: false,
+      error: String(e),
+    });
   }
 }
