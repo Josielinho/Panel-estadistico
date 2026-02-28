@@ -4,9 +4,7 @@ import {
   Users,
   ThumbsUp,
   Clock,
-  TrendingUp,
   Heart,
-  MessageSquare,
   Download,
   Trash2,
   RefreshCw,
@@ -15,7 +13,6 @@ import { useSurveyData } from '@/hooks/useSurveyData';
 import { KPICard } from '@/components/dashboard/KPICard';
 import { BarChartCard } from '@/components/dashboard/BarChartCard';
 import { PieChartCard } from '@/components/dashboard/PieChartCard';
-import { SatisfactionGauge } from '@/components/dashboard/SatisfactionGauge';
 import { CommentsTable } from '@/components/dashboard/CommentsTable';
 import { FiltersBar } from '@/components/dashboard/FiltersBar';
 import { Button } from '@/components/ui/button';
@@ -38,11 +35,9 @@ const Index = () => {
   const {
     stats,
     allChartData,
-    turnoData,
     comments,
     loading,
     error,
-    tableUsed,
     dateRange,
     setDateRange,
     selectedTurno,
@@ -55,6 +50,7 @@ const Index = () => {
   const timeQuestions = chartQuestions.filter(q =>
     ['1', '2', '5', '13', '15'].includes(q.id)
   );
+
   const ratingQuestions = chartQuestions.filter(q =>
     ['3', '4', '7', '8', '10', '12', '14'].includes(q.id)
   );
@@ -228,7 +224,7 @@ const Index = () => {
                 <AlertDialogDescription>
                   Esta acción es irreversible.
                   <br />
-                  Escribe <strong>{DELETE_PHRASE}</strong> para confirmar.
+                  Escribe <strong>ELIMINAR TODO</strong> para confirmar.
                 </AlertDialogDescription>
               </AlertDialogHeader>
 
@@ -245,7 +241,7 @@ const Index = () => {
                 <Input
                   value={confirmText}
                   onChange={(e) => setConfirmText(e.target.value)}
-                  placeholder={`Escribe: ${DELETE_PHRASE}`}
+                  placeholder="Escribe: ELIMINAR TODO"
                 />
               </div>
 
@@ -306,11 +302,6 @@ const Index = () => {
 
         {/* Comments */}
         <CommentsTable comments={comments} pageSize={8} />
-
-        {/* Footer */}
-        <footer className="border-t pt-6 text-center text-sm text-muted-foreground"
-          <p className="mt-1">© {new Date().getFullYear()} Hospital Nicolás A. Solano</p>
-        </footer>
       </main>
     </div>
   );
