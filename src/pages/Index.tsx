@@ -308,11 +308,7 @@ const Index = () => {
         <CommentsTable comments={comments} pageSize={8} />
 
         {/* Footer */}
-        <footer className="border-t pt-6 text-center text-sm text-muted-foreground">
-          <p>
-            Programado por <strong>Klhetvin Gonzalez</strong> y{' '}
-            <strong>Abdel Nateron</strong>
-          </p>
+        <footer className="border-t pt-6 text-center text-sm text-muted-foreground"
           <p className="mt-1">© {new Date().getFullYear()} Hospital Nicolás A. Solano</p>
         </footer>
       </main>
