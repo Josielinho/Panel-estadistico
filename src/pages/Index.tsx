@@ -292,11 +292,13 @@ const Index = () => {
 
         {/* Charts */}
         <section className="grid gap-6 lg:grid-cols-2">
-          {timeQuestions.map(q =>
-            renderChart(q.id, `P${q.numero}. ${q.shortTitle}`, q.chartType, 300)
-          )}
-          {ratingQuestions.map(q =>
-            renderChart(q.id, `P${q.numero}. ${q.shortTitle}`, q.chartType, 260)
+          {chartQuestions.map(q =>
+            renderChart(
+              q.id,
+              `P${q.numero}. ${q.shortTitle}`,
+              q.chartType,
+              q.chartType === 'bar' ? 300 : 260
+            )
           )}
         </section>
 
